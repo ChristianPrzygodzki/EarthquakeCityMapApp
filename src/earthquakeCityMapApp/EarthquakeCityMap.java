@@ -39,7 +39,7 @@ public class EarthquakeCityMap extends PApplet {
 	// It's to get rid of eclipse warnings
 	private static final long serialVersionUID = 1L;
 
-	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
+	// IF YOU ARE WORKING OFFLINE, change the value of this variable to true
 	private static final boolean offline = false;
 	
 	/** This is where to find the local tiles, for working without an Internet connection */
@@ -67,6 +67,10 @@ public class EarthquakeCityMap extends PApplet {
 	
 	private CommonMarker lastSelected;
 	private CommonMarker lastClicked;
+
+	static public void main(String[] args) {
+		PApplet.main("earthquakeCityMapApp.EarthquakeCityMap");
+	}
 	
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
@@ -98,14 +102,14 @@ public class EarthquakeCityMap extends PApplet {
 		
 		//     STEP 2: read in city data
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
-		cityMarkers = new ArrayList<Marker>();
+		cityMarkers = new ArrayList<>();
 		for(Feature city : cities) {
 		  cityMarkers.add(new CityMarker(city));
 		}
 	    
 		//     STEP 3: read in earthquake RSS feed
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
-	    quakeMarkers = new ArrayList<Marker>();
+	    quakeMarkers = new ArrayList<>();
 	    
 	    for(PointFeature feature : earthquakes) {
 		  //check if LandQuake
@@ -202,8 +206,7 @@ public class EarthquakeCityMap extends PApplet {
 			unhideMarkers();
 			lastClicked = null;
 		}
-		else if (lastClicked == null) 
-		{
+		else {
 			checkEarthquakesForClick();
 			if (lastClicked == null) {
 				checkCitiesForClick();

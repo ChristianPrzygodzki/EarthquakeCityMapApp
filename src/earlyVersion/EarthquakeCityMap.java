@@ -47,6 +47,9 @@ public class EarthquakeCityMap extends PApplet {
 	//feed with magnitude 2.5+ Earthquakes
 	private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
 
+	static public void main(String[] args) {
+		PApplet.main("earlyVersion.EarthquakeCityMap");
+	}
 	
 	public void setup() {
 		size(950, 600, OPENGL);
@@ -65,7 +68,7 @@ public class EarthquakeCityMap extends PApplet {
 	    MapUtils.createDefaultEventDispatcher(this, map);	
 			
 	    // The List you will populate with new SimplePointMarkers
-	    List<Marker> markers = new ArrayList<Marker>();
+	    List<Marker> markers = new ArrayList<>();
 
 	    //Use provided parser to collect properties for each earthquake
 	    //PointFeatures have a getLocation method
